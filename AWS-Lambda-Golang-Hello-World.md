@@ -96,7 +96,7 @@ aws sts get-caller-identity --profile lambda-admin
 
 ### Command (PowerShell, single line)
 ```powershell
-aws lambda create-function --function-name hello-lambda-go --runtime provided.al2023 --handler bootstrap --role "arn:aws:iam::135808959611:role/golang-lambda-basic-role" --zip-file fileb://deployment.zip --profile lambda-admin
+aws lambda create-function --function-name hello-lambda-go --runtime provided.al2023 --handler bootstrap --role "IAM execution ARN" --zip-file fileb://deployment.zip --profile lambda-admin
 ```
 
 **Parameter Breakdown:**

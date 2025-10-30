@@ -56,7 +56,7 @@ aws lambda add-permission `
   --statement-id "S3-Invoke-Permission-1" `
   --action "lambda:InvokeFunction" `
   --principal s3.amazonaws.com `
-  --source-arn "arn:aws:s3:::jyotishmoyfirstbucket" `
+  --source-arn "bucket-arn" `
   --profile lambda-admin
 ```
 
@@ -69,7 +69,7 @@ It grants permission for `s3.amazonaws.com` to trigger the function `hello-lambd
 
 ### Command
 ```bash
-aws s3api put-bucket-notification-configuration --bucket "jyotishmoyfirstbucket" --notification-configuration file://notification.json --profile lambda-admin
+aws s3api put-bucket-notification-configuration --bucket "bucket-name" --notification-configuration file://notification.json --profile lambda-admin
 ```
 **Use Case:** Configures the S3 bucket to send event notifications to the Lambda function.
 
@@ -78,7 +78,7 @@ aws s3api put-bucket-notification-configuration --bucket "jyotishmoyfirstbucket"
 {
   "LambdaFunctionConfigurations": [
     {
-      "LambdaFunctionArn": "arn:aws:lambda:ap-south-1:135808959611:function:hello-lambda-go",
+      "LambdaFunctionArn": "",
       "Events": ["s3:ObjectCreated:*"]
     }
   ]
@@ -96,7 +96,7 @@ aws s3api put-bucket-notification-configuration --bucket "jyotishmoyfirstbucket"
 Set-Content -Path "test-trigger.txt" -Value "This is a test for Lambda!"
 
 # 2. Upload the test file to S3
-aws s3 cp .\test-trigger.txt s3://jyotishmoyfirstbucket/test-trigger.txt --profile lambda-admin
+aws s3 cp .\test-trigger.txt s3://bucket-name/test-trigger.txt --profile lambda-admin
 ```
 
 **Use Case:** Uploading the file triggers the Lambda function automatically.
